@@ -22,8 +22,12 @@ public class Ortografia {
     	try{
     		List<RuleMatch> matches = langTool.check(cadena);
     		for (RuleMatch match : matches){
-    	        error =("Error en la línea " +match.getLine() + ", espacio " +match.getColumn() + ": " + match.getMessage()+"\n"+"Palabras sugeridas: " +
-    	    	        match.getSuggestedReplacements());
+    			int tamaño=match.getToPos()-match.getFromPos();
+    			char palabra[]=new char[tamaño];
+    			for(int i=0; i<=tamaño-1; i++){
+    				palabra[i]=cadena.charAt(match.getFromPos()+i);
+    			}
+    			error=("Error '"+String.valueOf(palabra)+"'; "+match.getMessage()+"\nPalabras sugeridas: "+match.getSuggestedReplacements());
     	        mensaje=mensaje+"\n"+error;
     		}
     	} catch (IOException e) {
