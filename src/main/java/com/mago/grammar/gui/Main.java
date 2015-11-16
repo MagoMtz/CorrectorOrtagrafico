@@ -31,6 +31,7 @@ import org.languagetool.language.Spanish;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import com.mago.grammar.objeto.App;
 import com.mago.grammar.spelling.Ortografia;
 
 public class Main {
@@ -213,6 +214,15 @@ public class Main {
 				txtTexto.setText("");
 				txtErrores.setText("");
 				txtCorregido.setText("");
+			}
+		});
+		
+		btnAsm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				App codObj= new App();
+				codObj.codigoObj(txtCorregido.getText());
 			}
 		});
 		
