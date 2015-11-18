@@ -241,7 +241,7 @@ public class Main {
 		      FileReader archivos=new FileReader(abre);
 		      BufferedReader lee=new BufferedReader(archivos);
 		      while((aux=lee.readLine())!=null){
-		         texto+= aux+ "\n";
+		         texto+= aux+ " ";
 		      }
 		         lee.close();
 		    }    
