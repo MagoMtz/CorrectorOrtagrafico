@@ -28,13 +28,22 @@ import javax.swing.JTextPane;
 import org.languagetool.JLanguageTool;
 import org.languagetool.language.Spanish;
 
+
+
+
+
+
+
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import com.itextpdf.text.DocumentException;
 import com.mago.grammar.objeto.App;
 import com.mago.grammar.spelling.Ortografia;
 
 public class Main {
+	
 	private JButton btnDisplay;
 	private JButton btnAsm;
 	private JButton btnRevisar;
@@ -223,6 +232,22 @@ public class Main {
 				// TODO Auto-generated method stub
 				App codObj= new App();
 				codObj.codigoObj(txtCorregido.getText());
+				JOptionPane.showMessageDialog(null,"Código objeto generado.");
+			}
+		});
+		
+		btnDisplay.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				App codObj= new App();
+				try {
+					codObj.exeASM();
+					codObj.generatePDF(txtCorregido.getText());
+				} catch (IOException | InterruptedException | DocumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

@@ -21,15 +21,20 @@ public class Ortografia {
     	String error="";
     	try{
     		List<RuleMatch> matches = langTool.check(cadena);
-    		for (RuleMatch match : matches){
-    			int tamaño=match.getToPos()-match.getFromPos();
-    			char palabra[]=new char[tamaño];
-    			for(int i=0; i<=tamaño-1; i++){
-    				palabra[i]=cadena.charAt(match.getFromPos()+i);
-    			}
-    			error=("Error '"+String.valueOf(palabra)+"'; "+match.getMessage()+"\nPalabras sugeridas: "+match.getSuggestedReplacements());
-    	        mensaje=mensaje+"\n"+error;
+    		if(!matches.isEmpty()){
+    			for (RuleMatch match : matches){
+        			int tamaño=match.getToPos()-match.getFromPos();
+        			char palabra[]=new char[tamaño];
+        			for(int i=0; i<=tamaño-1; i++){
+        				palabra[i]=cadena.charAt(match.getFromPos()+i);
+        			}
+        			error=("Error '"+String.valueOf(palabra)+"'; "+match.getMessage()+"\nPalabras sugeridas: "+match.getSuggestedReplacements());
+        	        mensaje=mensaje+"\n"+error;
+        		}	
+    		}else{
+    			mensaje="No hay errores";
     		}
+    		
     	} catch (IOException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
